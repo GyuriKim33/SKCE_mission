@@ -34,7 +34,7 @@ export function LandingPage({ onStart }: LandingPageProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   type: 'tween',
-                  duration: 1.65,
+                  duration: 2.65,
                   delay: 0.04,
                   ease: [0.22, 1, 0.36, 1],
                 }}
@@ -82,7 +82,7 @@ export function LandingPage({ onStart }: LandingPageProps) {
                 confirmLabel={landing.confirmButton}
                 laterLabel={landing.laterButton}
                 onConfirm={() => setLandingStage('envelope')}
-                arrivalDelay={0.38}
+                arrivalDelay={0.8}
               />
             </motion.div>
           )}

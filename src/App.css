@@ -98,6 +98,7 @@
   display: flex;
   align-items: center;
   gap: 22px;
+  translate: 0 17px;
 }
 
 .notification-icon {
@@ -324,7 +325,16 @@
   font-weight: 750;
   letter-spacing: 0.12em;
   text-align: left;
-  pointer-events: none;
+  cursor: pointer;
+  pointer-events: auto;
+  transition:
+    translate 180ms ease-out,
+    box-shadow 180ms ease-out;
+}
+
+.envelope-paper-hint:hover {
+  translate: 0 -7px;
+  box-shadow: 0 7px 15px rgb(62 43 33 / 13%);
 }
 
 .envelope-animated-flap {
@@ -686,6 +696,16 @@
   line-height: 1.5;
 }
 
+.envelope-stage:has(.envelope-trigger[aria-expanded='true']) .landing-instruction p {
+  font-size: 0;
+}
+
+.envelope-stage:has(.envelope-trigger[aria-expanded='true']) .landing-instruction p::after {
+  color: #373330;
+  content: '지원서를 클릭해 펼쳐보세요';
+  font-size: 1.03rem;
+}
+
 .notification-intro {
   display: grid;
   justify-items: center;
@@ -852,6 +872,9 @@
   .landing-instruction { gap: 9px; margin-top: 55px; }
   .landing-instruction svg { width: 24px; height: 24px; }
   .landing-instruction p { font-size: 0.84rem; }
+  .envelope-stage:has(.envelope-trigger[aria-expanded='true']) .landing-instruction p::after {
+    font-size: 0.84rem;
+  }
 
   .resume-layout { flex-direction: column; }
   .resume-sidebar { flex-basis: auto; }
