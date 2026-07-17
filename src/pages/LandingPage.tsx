@@ -82,7 +82,7 @@ export function LandingPage({ onStart }: LandingPageProps) {
                 confirmLabel={landing.confirmButton}
                 laterLabel={landing.laterButton}
                 onConfirm={() => setLandingStage('envelope')}
-                arrivalDelay={0.8}
+                arrivalDelay={0.5}
               />
             </motion.div>
           )}

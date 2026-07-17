@@ -1,24 +1,102 @@
+import weDoTechnology from '../assets/logos/we-do-technology.png'
+
 export interface ResumeSectionData {
   id: string
   title: string
   body: string
+  subtitle?: string
+  companyProfile?: {
+    name: string
+    intro: string
+    tagline: string
+    information: readonly {
+      label: string
+      value: string
+      image?: string
+      icon:
+        | 'building'
+        | 'calendar'
+        | 'location'
+        | 'business'
+        | 'product'
+        | 'people'
+        | 'global'
+        | 'slogan'
+    }[]
+  }
 }
 
 export const resumeSections = [
   {
-    id: 'motivation',
-    title: '지원 동기',
-    body: '지원 동기 내용이 이곳에 표시됩니다.',
+    id: 'personal-information',
+    title: '01 인적사항',
+    body: '',
+    subtitle: '기업 정보',
+    companyProfile: {
+      name: 'SK hynix',
+      intro: 'AI 시대를 선도하는\n메모리 혁신의 창조자',
+      tagline: 'Technology Innovator\nfor a Better World',
+      information: [
+        { label: '기업명', value: 'SK하이닉스', icon: 'building' },
+        {
+          label: '반도체 사업 개시일',
+          value: '1983년 2월',
+          icon: 'calendar',
+        },
+        {
+          label: '업종',
+          value: '반도체 소자 제조와 판매',
+          icon: 'business',
+        },
+        { label: '본사 소재', value: '경기도 이천시', icon: 'location' },
+        {
+          label: '핵심 제품',
+          value: 'HBM · DRAM · NAND Flash',
+          icon: 'product',
+        },
+        {
+          label: '주요 사업장',
+          value: '이천 · 청주 · 분당 · 글로벌 법인',
+          icon: 'global',
+        },
+        {
+          label: '브랜드 슬로건',
+          value: 'We Do Technology',
+          icon: 'slogan',
+          image: weDoTechnology,
+        },
+      ],
+    },
   },
   {
-    id: 'experience',
-    title: '주요 경험',
-    body: '주요 경험 내용이 이곳에 표시됩니다.',
+    id: 'application-information',
+    title: '02 지원 정보',
+    body: '',
   },
   {
-    id: 'future',
-    title: '입사 후 포부',
-    body: '입사 후 포부 내용이 이곳에 표시됩니다.',
+    id: 'education',
+    title: '03 학력',
+    body: '',
+  },
+  {
+    id: 'achievements',
+    title: '04 주요 성과',
+    body: '',
+  },
+  {
+    id: 'experience-description',
+    title: '05 경험기술서',
+    body: '',
+  },
+  {
+    id: 'self-introduction',
+    title: '06 자기소개서',
+    body: '',
+  },
+  {
+    id: 'final-question',
+    title: '07 마지막 질문',
+    body: '',
   },
 ] as const satisfies readonly ResumeSectionData[]
 
