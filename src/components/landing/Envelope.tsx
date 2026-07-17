@@ -45,6 +45,20 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
             className="envelope-interior"
             aria-hidden="true"
           />
+          <span className="envelope-paper-pocket" aria-hidden="true">
+            <motion.span
+              className="envelope-paper-hint"
+              initial={{ opacity: 0, y: 26 }}
+              animate={{ opacity: 1, y: -100 }}
+              transition={{
+                duration: 0.52,
+                delay: 0.5,
+                ease: 'easeOut',
+              }}
+            >
+              APPLICATION
+            </motion.span>
+          </span>
           <motion.span
             className="envelope-animated-flap"
             aria-hidden="true"
