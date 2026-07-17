@@ -24,6 +24,12 @@ export interface ResumeSectionData {
         | 'slogan'
     }[]
   }
+  applicationInformation?: readonly {
+    label: string
+    headline: string
+    description: string
+    icon: 'route' | 'referrer' | 'company'
+  }[]
 }
 
 export const resumeSections = [
@@ -72,6 +78,27 @@ export const resumeSections = [
     id: 'application-information',
     title: '02 지원 정보',
     body: '',
+    applicationInformation: [
+      {
+        label: '지원 경로',
+        headline: '당신의 관심',
+        description: 'SK Careers를 통해\n우리를 알게 되었습니다.',
+        icon: 'route',
+      },
+      {
+        label: '추천인',
+        headline: '미래의 당신',
+        description: '성장한 당신의 모습이\n지금의 당신을 추천합니다.',
+        icon: 'referrer',
+      },
+      {
+        label: '지원 기업',
+        headline: '당신의 관심기업',
+        description:
+          '당신의 가능성과 시너지를 낼 수 있는\n관심기업이 되길 희망합니다.',
+        icon: 'company',
+      },
+    ],
   },
   {
     id: 'education',

@@ -1150,6 +1150,106 @@
   object-position: center;
 }
 
+.resume-section--application-information {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.expanded-resume-content .resume-section--application-information {
+  min-height: 0;
+}
+
+.application-information-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: stretch;
+  overflow: hidden;
+  border: 1px solid rgb(210 204 197 / 72%);
+  border-radius: 13px;
+  background: rgb(255 255 255 / 76%);
+  box-shadow: 0 5px 16px rgb(48 34 27 / 3%);
+}
+
+.application-information-card {
+  display: flex;
+  min-width: 0;
+  min-height: 190px;
+  align-items: center;
+  gap: 17px;
+  padding: 26px 22px;
+}
+
+.application-information-card + .application-information-card {
+  border-left: 1px solid rgb(210 204 197 / 38%);
+}
+
+.application-information-icon {
+  display: inline-grid;
+  width: 52.8px;
+  height: 52.8px;
+  flex: 0 0 52.8px;
+  place-items: center;
+  border: 1px solid rgb(229 38 45 / 16%);
+  border-radius: 50%;
+  color: #f0443e;
+  background: #fff;
+}
+
+.application-information-icon svg {
+  width: 26.4px;
+  height: 26.4px;
+  stroke-width: 1.65;
+}
+
+.application-information-copy {
+  display: grid;
+  min-width: 0;
+  gap: 8px;
+}
+
+.application-information-copy small {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #706863;
+  font-size: 0.74rem;
+}
+
+.application-information-copy small::before {
+  width: 4px;
+  height: 14px;
+  flex: 0 0 4px;
+  border-radius: 999px;
+  background: #f47a22;
+  content: '';
+}
+
+.application-information-copy strong {
+  color: #211e1c;
+  font-size: 1.1rem;
+  font-weight: 750;
+  line-height: 1.35;
+  letter-spacing: -0.025em;
+}
+
+.application-information-copy p {
+  margin: 3px 0 0;
+  color: #7d756f;
+  font-size: 0.75rem;
+  line-height: 1.65;
+  white-space: pre-line;
+}
+
+.application-information-card:last-child .application-information-copy p {
+  font-size: 0.75rem;
+  letter-spacing: normal;
+  white-space: pre;
+}
+
 .resume-sidebar {
   position: sticky;
   top: 32px;
@@ -1326,6 +1426,7 @@
   }
   .resume-section { min-height: 180px; padding: 24px; }
   .resume-section--company-profile { min-height: 0; padding: 0; }
+  .resume-section--application-information { min-height: 0; padding: 0; }
   .company-profile-layout { grid-template-columns: 1fr; }
   .company-intro-card,
   .company-information-card { min-height: 220px; }
@@ -1340,4 +1441,9 @@
     border-top: 0;
   }
   .company-information-item:last-child { border-bottom: 0; }
+  .application-information-grid { grid-template-columns: 1fr; }
+  .application-information-card + .application-information-card {
+    border-top: 1px solid rgb(210 204 197 / 38%);
+    border-left: 0;
+  }
 }

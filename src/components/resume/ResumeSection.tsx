@@ -6,6 +6,8 @@ import {
   Globe2,
   MapPin,
   Megaphone,
+  Send,
+  Target,
   Users,
   type LucideIcon,
 } from 'lucide-react'
@@ -35,6 +37,15 @@ const companyInfoIcons: Record<CompanyInfoIcon, LucideIcon> = {
   global: Globe2,
   slogan: Megaphone,
 }
+
+const applicationInformationIcons = {
+  route: Send,
+  referrer: Users,
+  company: Target,
+} satisfies Record<
+  NonNullable<ResumeSectionData['applicationInformation']>[number]['icon'],
+  LucideIcon
+>
 
 export function ResumeSection({ section }: ResumeSectionProps) {
   if (section.companyProfile) {
@@ -96,6 +107,41 @@ export function ResumeSection({ section }: ResumeSectionProps) {
               )
             })}
           </dl>
+        </div>
+      </section>
+    )
+  }
+
+  if (section.applicationInformation) {
+    const [number, ...titleParts] = section.title.split(' ')
+
+    return (
+      <section
+        className="resume-section resume-section--application-information"
+        id={section.id}
+      >
+        <header className="resume-section-heading">
+          <span className="resume-section-number">{number}</span>
+          <h2>{titleParts.join(' ')}</h2>
+        </header>
+
+        <div className="application-information-grid">
+          {section.applicationInformation.map((item) => {
+            const Icon = applicationInformationIcons[item.icon]
+
+            return (
+              <article className="application-information-card" key={item.label}>
+                <span className="application-information-icon" aria-hidden="true">
+                  <Icon />
+                </span>
+                <div className="application-information-copy">
+                  <small>{item.label}</small>
+                  <strong>{item.headline}</strong>
+                  <p>{item.description}</p>
+                </div>
+              </article>
+            )
+          })}
         </div>
       </section>
     )
