@@ -1,0 +1,677 @@
+/* Global tokens and resets live in index.css. */
+.page-shell {
+  width: min(1440px, 100%);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 38px 58px 70px;
+}
+
+.sticky-message-bar,
+.resume-section,
+.evaluation-checklist,
+.final-decision {
+  padding: 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  background: var(--color-surface);
+}
+
+.header,
+.resume-layout,
+.page-actions {
+  display: flex;
+  gap: 24px;
+}
+
+.header,
+.page-actions {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header {
+  min-height: 48px;
+  padding-inline: 2px;
+}
+
+.header-logo {
+  display: block;
+  width: auto;
+  height: 42px;
+  object-fit: contain;
+}
+
+.menu-button {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  color: #171717;
+  background: transparent;
+  cursor: default;
+}
+
+.menu-button svg {
+  width: 34px;
+  height: 34px;
+  stroke-width: 1.6;
+}
+
+.page-content,
+.resume-content {
+  display: grid;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.landing-page {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+}
+
+.landing-page > .notification-intro,
+.landing-page > .envelope-stage {
+  grid-area: 1 / 1;
+}
+
+.notification-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(860px, calc(100vw - 48px));
+  min-height: 147px;
+  margin-top: 82px;
+  padding: 25px 30px;
+  border: 1px solid rgb(255 255 255 / 82%);
+  border-radius: 22px;
+  background: rgb(255 255 255 / 88%);
+  box-shadow: 0 22px 55px rgb(72 48 37 / 14%);
+  backdrop-filter: blur(18px);
+  flex-wrap: wrap;
+}
+
+.notification-main {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.notification-icon {
+  position: relative;
+  display: grid;
+  width: 72px;
+  height: 72px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 17px;
+  color: #dc342f;
+  background: #f8d7d4;
+}
+
+.notification-icon svg {
+  width: 33px;
+  height: 33px;
+  fill: currentColor;
+  stroke-width: 1.5;
+}
+
+.notification-copy {
+  display: grid;
+  gap: 9px;
+  text-align: left;
+}
+
+.notification-eyebrow {
+  color: #d72f2a;
+  font-size: 0.97rem;
+  font-weight: 800;
+  letter-spacing: 0.045em;
+}
+
+.notification-copy p,
+.landing-instruction p {
+  margin: 0;
+}
+
+.notification-copy p {
+  color: #151515;
+  font-size: 1.49rem;
+  font-weight: 760;
+  letter-spacing: -0.025em;
+}
+
+.notification-meta {
+  display: grid;
+  align-self: stretch;
+  justify-items: center;
+  align-content: space-between;
+  color: #8d8985;
+  font-size: 0.9rem;
+}
+
+.notification-meta button {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  color: #77736f;
+  background: transparent;
+  cursor: default;
+}
+
+.notification-meta button svg {
+  width: 24px;
+  height: 24px;
+  stroke-width: 1.8;
+}
+
+.notification-actions {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 10px;
+}
+
+.notification-actions button {
+  min-height: 43px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.notification-later-button {
+  border: 0;
+  color: #77716c;
+  background: transparent;
+}
+
+.notification-confirm-button {
+  border: 1px solid #d93b35;
+  color: #fff;
+  background: #df433c;
+  box-shadow: 0 4px 10px rgb(190 49 43 / 16%);
+}
+
+.notification-rays {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  width: 44px;
+  height: 28px;
+  transform: translateX(-50%);
+}
+
+.notification-rays i {
+  position: absolute;
+  top: 1px;
+  left: 20px;
+  display: block;
+  width: 3px;
+  height: 16px;
+  border-radius: 999px;
+  background: #db322d;
+  transform-origin: 50% 22px;
+}
+
+.notification-rays i:nth-child(1) { transform: rotate(0deg); }
+.notification-rays i:nth-child(2) { transform: rotate(-43deg); }
+.notification-rays i:nth-child(3) { transform: rotate(43deg); }
+
+.envelope-stage {
+  display: grid;
+  justify-items: center;
+  margin-top: 112px;
+}
+
+.envelope-trigger {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  filter:
+    drop-shadow(0 18px 14px rgb(63 42 29 / 12%))
+    drop-shadow(0 44px 34px rgb(63 42 29 / 20%));
+  transition: filter 240ms ease;
+}
+
+.envelope-trigger:hover {
+  filter:
+    drop-shadow(0 22px 17px rgb(63 42 29 / 15%))
+    drop-shadow(0 54px 42px rgb(63 42 29 / 27%));
+}
+
+.envelope {
+  position: relative;
+  display: block;
+  width: min(800px, calc(100vw - 64px));
+  aspect-ratio: 1.3;
+  overflow: hidden;
+  border-radius: 7px;
+  background: #f9f6f2;
+}
+
+.envelope-reference-image {
+  position: absolute;
+  top: -74.5%;
+  left: -16.8%;
+  display: block;
+  width: 133.25%;
+  max-width: none;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
+}
+
+.envelope-flap {
+  position: absolute;
+  z-index: 3;
+  inset: 0 0 auto;
+  height: 60%;
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 18%) 0, transparent 3px),
+    linear-gradient(145deg, #fa8175 0%, #f5766b 48%, #ee675f 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  filter:
+    drop-shadow(0 2px 1px rgb(255 255 255 / 34%))
+    drop-shadow(0 6px 3px rgb(91 46 42 / 34%))
+    drop-shadow(0 13px 8px rgb(91 46 42 / 24%))
+    drop-shadow(0 22px 15px rgb(91 46 42 / 13%));
+}
+
+.envelope-flap::after {
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  width: 76px;
+  height: 11px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, rgb(91 42 38 / 25%), rgb(255 255 255 / 10%));
+  content: '';
+  transform: translateX(-50%);
+}
+
+.envelope-fold {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  width: 61%;
+  height: 67%;
+  background:
+    repeating-linear-gradient(12deg, rgb(103 82 69 / 0.8%) 0 1px, transparent 1px 4px),
+    linear-gradient(150deg, #fefdfc 0%, #f6f3ef 100%);
+  filter: drop-shadow(0 -1px 1px rgb(128 109 95 / 11%));
+}
+
+.envelope-fold-left { left: 0; clip-path: polygon(0 0, 100% 100%, 0 100%); }
+.envelope-fold-right { right: 0; clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+
+.envelope-fold::after {
+  position: absolute;
+  top: 0;
+  width: 124%;
+  height: 1px;
+  background: rgb(255 255 255 / 78%);
+  box-shadow:
+    0 1px 0 rgb(139 120 106 / 18%),
+    0 2px 4px rgb(112 91 76 / 7%);
+  content: '';
+  transform-origin: top left;
+}
+
+.envelope-fold-left::after {
+  left: 0;
+  transform: rotate(35deg);
+}
+
+.envelope-fold-right::after {
+  right: 0;
+  transform: rotate(-35deg);
+  transform-origin: top right;
+}
+
+.envelope-seal {
+  position: absolute;
+  z-index: 10;
+  top: calc(55% + 8px);
+  left: 50%;
+  display: grid;
+  width: 90px;
+  height: 90px;
+  place-items: center;
+  border: 1px solid rgb(124 108 99 / 15%);
+  border-radius: 50%;
+  color: #de3e37;
+  background:
+    radial-gradient(circle at 35% 25%, rgb(255 255 255 / 95%) 0 9%, transparent 34%),
+    linear-gradient(145deg, #fff 12%, #f5f2ef 100%);
+  box-shadow:
+    0 15px 24px rgb(75 47 37 / 26%),
+    0 4px 8px rgb(75 47 37 / 15%),
+    inset 0 2px 2px rgb(255 255 255 / 90%),
+    inset 0 -4px 6px rgb(82 55 43 / 10%);
+  font-size: 1.55rem;
+  font-weight: 850;
+  letter-spacing: -0.09em;
+  transform: translate(-50%, -50%) rotate(-4deg);
+}
+
+.application-postmark {
+  position: absolute;
+  z-index: 7;
+  top: 7%;
+  right: 8%;
+  width: 175px;
+  height: 118px;
+  color: #c93f39;
+  opacity: 0.58;
+  mix-blend-mode: multiply;
+  transform: rotate(-9deg);
+}
+
+.postmark-ring {
+  position: absolute;
+  right: 0;
+  display: grid;
+  width: 112px;
+  height: 112px;
+  place-items: center;
+  align-content: center;
+  gap: 3px;
+  border: 3px double currentColor;
+  border-radius: 50%;
+  line-height: 1.05;
+  text-align: center;
+}
+
+.postmark-ring strong { font-size: 0.72rem; }
+.postmark-ring small { font-size: 0.48rem; letter-spacing: 0.05em; }
+
+.postmark-lines,
+.postmark-lines::before,
+.postmark-lines::after {
+  position: absolute;
+  left: 0;
+  top: 48px;
+  width: 80px;
+  height: 2px;
+  border-radius: 50%;
+  background: currentColor;
+  content: '';
+}
+
+.postmark-lines::before { top: -11px; left: 5px; }
+.postmark-lines::after { top: 11px; left: -4px; }
+
+.application-sticker {
+  position: absolute;
+  z-index: 9;
+  bottom: 8%;
+  left: 50%;
+  display: grid;
+  width: 330px;
+  min-height: 192px;
+  align-content: center;
+  gap: 16px;
+  padding: 29px 40px;
+  border: 3px double rgb(239 140 130 / 88%);
+  border-radius: 4px;
+  background: rgb(255 255 255 / 94%);
+  box-shadow:
+    0 2px 5px rgb(59 42 32 / 4%),
+    inset 0 0 0 4px rgb(255 255 255 / 72%);
+  clip-path: polygon(
+    12px 0, calc(100% - 12px) 0,
+    100% 12px, 100% calc(100% - 12px),
+    calc(100% - 12px) 100%, 12px 100%,
+    0 calc(100% - 12px), 0 12px
+  );
+  text-align: left;
+  transform: translateX(-50%);
+}
+
+.application-sticker::before,
+.application-sticker::after {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border: 1px solid rgb(239 140 130 / 60%);
+  background: transparent;
+  content: '';
+}
+
+.application-sticker::before { top: 5px; left: 5px; border-width: 1px 0 0 1px; }
+.application-sticker::after { right: 5px; bottom: 5px; border-width: 0 1px 1px 0; }
+
+.sticker-row {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.sticker-row > span {
+  display: grid;
+  gap: 3px;
+}
+
+.sticker-icon {
+  width: 31px;
+  height: 31px;
+  flex: 0 0 auto;
+  color: #ef7b70;
+  stroke-width: 1.7;
+}
+
+.application-sticker small {
+  color: #77706b;
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.application-sticker strong {
+  color: #242124;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.application-sticker .company-name {
+  color: #df4a42;
+  font-size: 1.25rem;
+}
+
+.sticker-divider {
+  width: 100%;
+  height: 1px;
+  border-top: 1px dashed rgb(190 176 166 / 52%);
+}
+
+.landing-instruction {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 78px;
+  color: #373330;
+  text-align: center;
+}
+
+.landing-instruction svg {
+  width: 30px;
+  height: 30px;
+  color: var(--color-accent);
+}
+
+.landing-instruction p {
+  font-size: 1.03rem;
+  font-weight: 570;
+  line-height: 1.5;
+}
+
+.notification-intro {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+}
+
+.landing-main-copy {
+  display: grid;
+  gap: 5px;
+  width: min(680px, calc(100vw - 48px));
+  margin: 0;
+  color: #292725;
+  font-size: clamp(1.55rem, 2.3vw, 2.01rem);
+  font-weight: 700;
+  line-height: 1.38;
+  letter-spacing: -0.035em;
+  text-align: center;
+}
+
+.landing-main-copy span {
+  display: block;
+}
+
+.landing-main-copy strong {
+  color: var(--color-accent);
+  font-weight: 800;
+}
+
+@media (min-width: 721px) {
+  .page-shell:has(.landing-page) {
+    min-height: 100dvh;
+    padding-bottom: 20px;
+  }
+
+  .page-shell:has(.landing-page) .page-content {
+    margin-top: 10px;
+  }
+
+  .landing-page {
+    min-height: calc(100dvh - 116px);
+    align-content: start;
+  }
+
+  .landing-page .notification-card {
+    min-height: 187px;
+    margin-top: clamp(16px, 3.2dvh, 34px);
+    padding-block: 14px;
+  }
+
+  .landing-page--notification .notification-intro {
+    margin-top: clamp(30px, calc(44dvh - 250px), 170px);
+  }
+
+  .landing-page--notification .notification-card {
+    margin-top: 46px;
+  }
+
+  .landing-page .notification-icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .landing-page .envelope-stage {
+    margin-top: clamp(28px, 4.2dvh, 44px);
+  }
+
+  .landing-page .envelope {
+    width: min(720px, calc((100dvh - 302px) * 1.3), calc(100vw - 64px));
+  }
+
+  .landing-page .landing-instruction {
+    margin-top: clamp(18px, 2.8dvh, 30px);
+  }
+}
+
+.resume-sidebar { flex: 0 0 220px; }
+.resume-content { flex: 1; }
+.resume-sidebar ul,
+.evaluation-checklist ul { padding-left: 20px; }
+.resume-sidebar button[aria-current='true'] { color: var(--color-accent); font-weight: 700; }
+
+.primary-button {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  color: white;
+  background: var(--color-accent);
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .page-shell { padding: 22px 20px 46px; }
+  .header-logo { height: 34px; }
+  .menu-button svg { width: 29px; height: 29px; }
+
+  .notification-card {
+    width: 100%;
+    min-height: 167px;
+    margin-top: 58px;
+    padding: 14px;
+    border-radius: 17px;
+  }
+
+  .notification-intro { margin-top: 48px; }
+  .landing-main-copy {
+    gap: 3px;
+    width: 100%;
+    padding-inline: 8px;
+    font-size: clamp(1.24rem, 5.98vw, 1.55rem);
+  }
+
+  .notification-intro .notification-card { margin-top: 36px; }
+
+  .notification-main { gap: 12px; }
+  .notification-icon { width: 52px; height: 52px; border-radius: 13px; }
+  .notification-icon svg { width: 25px; height: 25px; }
+  .notification-copy { gap: 5px; }
+  .notification-eyebrow { font-size: 0.75rem; }
+  .notification-copy p { max-width: 218px; font-size: 1.07rem; }
+  .notification-meta { font-size: 0.76rem; }
+  .notification-actions { padding-top: 7px; }
+  .notification-actions button { min-height: 41px; padding: 7px 13px; font-size: 0.97rem; }
+  .notification-rays { top: -13px; transform: translateX(-50%) scale(0.75); }
+
+  .envelope-stage { width: 100%; margin-top: 78px; }
+  .envelope { width: 100%; min-width: 0; aspect-ratio: 1.3; border-radius: 6px; }
+  .envelope-seal { top: calc(55% + 6px); width: 59px; height: 59px; font-size: 1rem; }
+
+  .application-postmark {
+    top: 5%;
+    right: 5%;
+    width: 95px;
+    height: 68px;
+    transform: rotate(-7deg) scale(0.63);
+    transform-origin: top right;
+  }
+
+  .application-sticker {
+    bottom: 5%;
+    width: min(215px, 64%);
+    min-height: 114px;
+    gap: 8px;
+    padding: 15px 20px;
+    border-width: 2px;
+  }
+
+  .sticker-row { gap: 9px; }
+  .sticker-icon { width: 20px; height: 20px; }
+  .application-sticker small { font-size: 0.48rem; }
+  .application-sticker strong { font-size: 0.66rem; }
+  .application-sticker .company-name { font-size: 0.82rem; }
+  .landing-instruction { gap: 9px; margin-top: 55px; }
+  .landing-instruction svg { width: 24px; height: 24px; }
+  .landing-instruction p { font-size: 0.84rem; }
+
+  .resume-layout { flex-direction: column; }
+  .resume-sidebar { flex-basis: auto; }
+}

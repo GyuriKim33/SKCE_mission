@@ -1,0 +1,33 @@
+:root {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #242327;
+  background: #fcf7ef;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --color-surface: #ffffff;
+  --color-border: #ded8cf;
+  --color-accent: #e5483f;
+  --color-coral: #f27166;
+  --color-ivory: #fcf7ef;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-accent), transparent 55%);
+  outline-offset: 3px;
+}
