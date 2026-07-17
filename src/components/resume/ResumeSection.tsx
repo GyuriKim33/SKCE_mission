@@ -4,13 +4,19 @@ import {
   Cpu,
   Database,
   Globe2,
+  GraduationCap,
+  Heart,
+  HeartHandshake,
+  Lightbulb,
   MapPin,
   Megaphone,
+  RefreshCw,
   Send,
   Target,
   Users,
   type LucideIcon,
 } from 'lucide-react'
+import { motion } from 'motion/react'
 import skHynixLogo from '../../assets/logos/logo.jpg'
 import type { ResumeSectionData } from '../../data/resumeSections'
 
@@ -47,12 +53,29 @@ const applicationInformationIcons = {
   LucideIcon
 >
 
+const educationMuscleIcons = {
+  thinking: Lightbulb,
+  adaptation: RefreshCw,
+  empathy: HeartHandshake,
+} satisfies Record<
+  NonNullable<ResumeSectionData['educationProfile']>['muscles'][number]['icon'],
+  LucideIcon
+>
+
+const sectionReveal = {
+  initial: { opacity: 0, y: 40 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.25 },
+  transition: { duration: 0.7, ease: 'easeOut' as const },
+}
+
 export function ResumeSection({ section }: ResumeSectionProps) {
   if (section.companyProfile) {
     const [number, ...titleParts] = section.title.split(' ')
 
     return (
-      <section
+      <motion.section
+        {...sectionReveal}
         className="resume-section resume-section--company-profile"
         id={section.id}
       >
@@ -108,7 +131,7 @@ export function ResumeSection({ section }: ResumeSectionProps) {
             })}
           </dl>
         </div>
-      </section>
+      </motion.section>
     )
   }
 
@@ -116,7 +139,8 @@ export function ResumeSection({ section }: ResumeSectionProps) {
     const [number, ...titleParts] = section.title.split(' ')
 
     return (
-      <section
+      <motion.section
+        {...sectionReveal}
         className="resume-section resume-section--application-information"
         id={section.id}
       >
@@ -143,14 +167,207 @@ export function ResumeSection({ section }: ResumeSectionProps) {
             )
           })}
         </div>
-      </section>
+      </motion.section>
+    )
+  }
+
+  if (section.educationProfile) {
+    const [number, ...titleParts] = section.title.split(' ')
+    const { degree, muscles, growth } = section.educationProfile
+
+    return (
+      <motion.section
+        {...sectionReveal}
+        className="resume-section resume-section--education"
+        id={section.id}
+      >
+        <header className="resume-section-heading">
+          <span className="resume-section-number">{number}</span>
+          <h2>{titleParts.join(' ')}</h2>
+        </header>
+
+        <div className="education-card-layout">
+          <article className="education-degree-card">
+            <header>
+              <span>{degree.label}</span>
+              <span className="education-degree-icon" aria-hidden="true">
+                <GraduationCap />
+              </span>
+            </header>
+            <strong className="education-degree-value">{degree.value}</strong>
+            <p className="education-policy-copy">
+              <span>{degree.effectiveDate}</span>
+              <span>
+                {degree.policyPrefix} <b>{degree.policyEmphasis}</b>했습니다.
+              </span>
+            </p>
+            <div className="education-former-requirement">
+              <small>기존 채용공고의</small>
+              <p>
+                <b>{degree.formerRequirement}</b>
+                {degree.formerRequirementSuffix}
+              </p>
+            </div>
+          </article>
+
+          <article className="education-muscles-card">
+            <h3>
+              우리가 찾는 <b>3대 근육</b>
+            </h3>
+            <div className="education-muscle-list">
+              {muscles.map((muscle) => {
+                const Icon = educationMuscleIcons[muscle.icon]
+
+                return (
+                  <div className="education-muscle-item" key={muscle.title}>
+                    <span className="education-muscle-icon" aria-hidden="true">
+                      <Icon />
+                    </span>
+                    <div>
+                      <strong>{muscle.title}</strong>
+                      <p>{muscle.description}</p>
+                    </div>
+                  </div>
+                )
+              })}
+              <span className="education-muscle-center">
+                <img src={skHynixLogo} alt="SK hynix" />
+                <small>AI Talent</small>
+              </span>
+            </div>
+          </article>
+
+          <article className="education-growth-card">
+            <span className="education-growth-icon" aria-hidden="true">
+              <Heart />
+            </span>
+            <div>
+              <small>{growth.label}</small>
+              <p>{growth.firstLine}</p>
+              <strong>{growth.emphasis}</strong>
+            </div>
+          </article>
+        </div>
+      </motion.section>
+    )
+  }
+
+  if (section.careerProfile) {
+    const [number, ...titleParts] = section.title.split(' ')
+    const career = section.careerProfile
+
+    return (
+      <motion.section
+        {...sectionReveal}
+        className="resume-section resume-section--career"
+        id={section.id}
+      >
+        <header className="resume-section-heading">
+          <span className="resume-section-number">{number}</span>
+          <h2>{titleParts.join(' ')}</h2>
+        </header>
+
+        <motion.div
+          className="career-timeline-card"
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.6, delay: 0.08, ease: 'easeOut' }}
+        >
+          <div className="career-timeline-scroll">
+            <span className="career-timeline-line" aria-hidden="true" />
+            <ol className="career-timeline-list">
+              {career.events.map((event, index) => (
+                <li key={event.year}>
+                  <motion.span
+                    className="career-timeline-dot"
+                    aria-hidden="true"
+                    initial={{ opacity: 0, scale: 0.4 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true, amount: 0.8 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.22 + index * 0.09,
+                      ease: 'easeOut',
+                    }}
+                  />
+                  <time>{event.year}</time>
+                  <p>{event.description}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </motion.div>
+
+        <motion.h3
+          className="career-headline career-progress-headline"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.55 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
+        >
+          <span>{career.messagePrefix}</span>
+          <b>{career.messageEmphasis}</b>
+        </motion.h3>
+      </motion.section>
+    )
+  }
+
+  if (section.technologyExperience) {
+    const [number, ...titleParts] = section.title.split(' ')
+    const experience = section.technologyExperience
+
+    return (
+      <motion.section
+        {...sectionReveal}
+        className="resume-section resume-section--technology-experience"
+        id={section.id}
+      >
+        <header className="resume-section-heading">
+          <span className="resume-section-number">{number}</span>
+          <h2>{titleParts.join(' ')}</h2>
+        </header>
+
+        <div className="technology-experience-intro">
+          <h3>{experience.title}</h3>
+          <p>{experience.description}</p>
+        </div>
+
+        <div className="technology-card-grid">
+          {experience.technologies.map((technology) => (
+            <article
+              className={`technology-card technology-card--${technology.illustration}`}
+              key={technology.name}
+            >
+              <small>{technology.eyebrow}</small>
+              <h4>{technology.name}</h4>
+              <p>{technology.fullName}</p>
+              <span className="technology-illustration" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+                <i />
+              </span>
+            </article>
+          ))}
+        </div>
+
+        <p className="technology-card-instruction">
+          <span aria-hidden="true">ⓘ</span>
+          {experience.instruction}
+        </p>
+      </motion.section>
     )
   }
 
   return (
-    <section className="resume-section" id={section.id}>
+    <motion.section
+      {...sectionReveal}
+      className="resume-section"
+      id={section.id}
+    >
       <h2>{section.title}</h2>
       {section.body && <p>{section.body}</p>}
-    </section>
+    </motion.section>
   )
 }

@@ -15,6 +15,9 @@ interface EnvelopeProps {
 export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isResumeOpening, setIsResumeOpening] = useState(false)
+  const [activeSectionId, setActiveSectionId] = useState<string>(
+    resumeSections[0].id,
+  )
   const paperRef = useRef<HTMLSpanElement>(null)
   const paperStartRectRef = useRef<DOMRect | null>(null)
   const paperControls = useAnimationControls()
@@ -73,6 +76,24 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
     openResume()
   }
 
+  const handleResumeScroll = () => {
+    const scrollContainer = paperRef.current
+    if (!scrollContainer || !isResumeOpening) return
+
+    const containerRect = scrollContainer.getBoundingClientRect()
+    const focusLine = containerRect.top + Math.min(180, containerRect.height * 0.3)
+    const sections = scrollContainer.querySelectorAll<HTMLElement>('.resume-section')
+    let nextSectionId: string = resumeSections[0].id
+
+    sections.forEach((section) => {
+      if (section.getBoundingClientRect().top <= focusLine) {
+        nextSectionId = section.id
+      }
+    })
+
+    setActiveSectionId(nextSectionId)
+  }
+
   const paperElement = (
     <motion.span
       ref={paperRef}
@@ -99,6 +120,7 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
       }}
       onClick={handlePaperClick}
       onKeyDown={handlePaperKeyDown}
+      onScroll={handleResumeScroll}
     >
       <span className="envelope-paper-label">APPLICATION</span>
       <span
@@ -119,7 +141,7 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
           <ResumeSidebar
             title={appContent.resume.sidebarTitle}
             sections={resumeSections}
-            activeSectionId={resumeSections[0].id}
+            activeSectionId={activeSectionId}
             onSelect={() => undefined}
           />
         </span>

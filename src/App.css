@@ -438,7 +438,7 @@
   display: grid;
   flex: 1 1 80%;
   min-width: 0;
-  gap: 22px;
+  gap: 50px;
 }
 
 .expanded-resume-content .resume-section {
@@ -447,7 +447,7 @@
 
 .expanded-resume-content .resume-sidebar {
   top: 24px;
-  flex: 0 0 clamp(240px, 20%, 260px);
+  flex: 0 0 clamp(200px, 17%, 220px);
 }
 
 .envelope-trigger--resume-opening {
@@ -928,11 +928,11 @@
   flex: 1 1 80%;
   min-width: 0;
   margin-top: 0;
-  gap: 24px;
+  gap: 50px;
 }
 
 .resume-section {
-  min-height: 220px;
+  min-height: 240px;
   padding: 32px;
   border-color: rgb(222 216 207 / 72%);
   border-radius: 18px;
@@ -942,7 +942,7 @@
 .resume-section h2 {
   margin: 0;
   color: #292624;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
   letter-spacing: -0.025em;
 }
 
@@ -967,7 +967,7 @@
 }
 
 .resume-section-heading h2 {
-  font-size: 1.08rem;
+  font-size: 1.62rem;
   font-weight: 750;
 }
 
@@ -1250,10 +1250,653 @@
   white-space: pre;
 }
 
+.resume-section--education {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.expanded-resume-content .resume-section--education {
+  min-height: 0;
+}
+
+.education-card-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 40%) minmax(0, 60%);
+  gap: 18px;
+}
+
+.education-degree-card,
+.education-muscles-card,
+.education-growth-card {
+  border: 1px solid rgb(210 204 197 / 72%);
+  border-radius: 13px;
+  background: rgb(255 255 255 / 76%);
+  box-shadow: 0 5px 16px rgb(48 34 27 / 3%);
+}
+
+.education-degree-card,
+.education-muscles-card {
+  min-height: 310px;
+}
+
+.education-degree-card {
+  padding: 26px;
+}
+
+.education-degree-card > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #706863;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.education-degree-icon,
+.education-muscle-icon,
+.education-growth-icon {
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgb(229 38 45 / 16%);
+  border-radius: 50%;
+  color: #f0443e;
+  background: #fff;
+}
+
+.education-degree-icon {
+  position: relative;
+  width: 46px;
+  height: 46px;
+}
+
+.education-degree-icon::after {
+  position: absolute;
+  width: 31px;
+  height: 1.5px;
+  background: currentColor;
+  content: '';
+  rotate: -38deg;
+}
+
+.education-degree-icon svg {
+  width: 23px;
+  height: 23px;
+  stroke-width: 1.6;
+}
+
+.education-degree-value {
+  display: block;
+  margin: 12px 0 17px;
+  color: #e5262d;
+  font-size: clamp(2.6rem, 4.5vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.education-policy-copy {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  color: #514b47;
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.education-policy-copy b,
+.education-former-requirement b {
+  margin-right: 4px;
+  color: #e5262d;
+}
+
+.education-former-requirement {
+  margin-top: 21px;
+  padding-top: 18px;
+  border-top: 1px solid rgb(210 204 197 / 38%);
+}
+
+.education-former-requirement small {
+  color: #8b837d;
+  font-size: 0.78rem;
+}
+
+.education-former-requirement p {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0 0;
+  color: #6f6761;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.education-muscles-card {
+  display: flex;
+  flex-direction: column;
+  padding: 27px 30px;
+}
+
+.education-muscles-card h3 {
+  margin: 0 0 12px;
+  color: #292624;
+  font-size: 1.18rem;
+  line-height: 1.35;
+}
+
+.education-muscles-card h3 b {
+  color: #e5262d;
+}
+
+.education-muscle-list {
+  position: relative;
+  display: block;
+  flex: 1;
+  min-height: 210px;
+}
+
+.education-muscle-item {
+  position: absolute;
+  display: flex;
+  width: 158px;
+  height: 158px;
+  flex: 0 0 158px;
+  min-height: 158px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 22px 14px;
+  border: 1px solid rgb(244 166 61 / 36%);
+  border-radius: 50%;
+  background: rgb(255 247 231 / 70%);
+  text-align: center;
+}
+
+.education-muscle-item + .education-muscle-item {
+  margin-left: 0;
+  border-top: 1px solid rgb(229 38 45 / 24%);
+}
+
+.education-muscle-item:nth-child(1) {
+  z-index: 0;
+  top: 0;
+  left: 50%;
+  translate: -50% 0;
+}
+
+.education-muscle-item:nth-child(2) {
+  z-index: 1;
+  bottom: 0;
+  left: 50%;
+  border-color: rgb(240 77 70 / 30%);
+  background: rgb(255 232 229 / 58%);
+  translate: -102.4% 0;
+}
+
+.education-muscle-item:nth-child(3) {
+  z-index: 1;
+  right: 50%;
+  bottom: 0;
+  border-color: rgb(240 77 70 / 30%);
+  background: rgb(255 232 229 / 58%);
+  translate: 102.4% 0;
+}
+
+.education-muscle-icon {
+  display: none;
+}
+
+.education-muscle-icon svg {
+  width: 17px;
+  height: 17px;
+  stroke-width: 1.6;
+}
+
+.education-muscle-item strong {
+  color: #d99a00;
+  font-size: 1.02rem;
+}
+
+.education-muscle-item:nth-child(2) strong,
+.education-muscle-item:nth-child(3) strong {
+  color: #e5262d;
+}
+
+.education-muscle-item:nth-child(2) > div {
+  display: grid;
+  max-width: 92px;
+  justify-items: center;
+  gap: 2px;
+  translate: 0 -6px;
+}
+
+.education-muscle-item:nth-child(3) > div {
+  display: grid;
+  max-width: 92px;
+  justify-items: center;
+  gap: 2px;
+  translate: 0 -6px;
+}
+
+.education-muscle-item p {
+  margin: 0;
+  color: #7d756f;
+  font-size: 0.62rem;
+  line-height: 1.25;
+  white-space: normal;
+}
+
+.education-muscle-center {
+  position: absolute;
+  z-index: 3;
+  top: 55%;
+  left: 50%;
+  display: grid;
+  width: 78px;
+  height: 78px;
+  place-content: center;
+  justify-items: center;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 94%);
+  box-shadow: 0 4px 14px rgb(48 34 27 / 6%);
+  translate: -50% -50%;
+}
+
+.education-muscle-center img {
+  width: 58px;
+  height: auto;
+  object-fit: contain;
+}
+
+.education-muscle-center small {
+  margin-top: 3px;
+  color: #4d4743;
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.education-growth-card {
+  display: flex;
+  grid-column: 1 / -1;
+  min-height: 142px;
+  align-items: center;
+  gap: 22px;
+  padding: 22px 28px;
+  background: linear-gradient(110deg, rgb(255 226 221 / 96%), #fff 68%);
+}
+
+.education-growth-icon {
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
+}
+
+.education-growth-icon svg {
+  width: 25px;
+  height: 25px;
+  stroke-width: 1.6;
+}
+
+.education-growth-card small {
+  color: #807873;
+  font-size: 0.72rem;
+}
+
+.education-growth-card p,
+.education-growth-card strong {
+  margin: 4px 0 0;
+  font-size: 1.3rem;
+  font-weight: 750;
+  line-height: 1.35;
+}
+
+.education-growth-card p {
+  color: #292624;
+}
+
+.education-growth-card strong {
+  display: block;
+  color: #e5262d;
+  font-size: 1.56rem;
+}
+
+.resume-section--career {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.expanded-resume-content .resume-section--career {
+  min-height: 0;
+}
+
+.career-headline {
+  display: grid;
+  gap: 4px;
+  margin: 4px 10px 24px;
+  color: #292624;
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  font-weight: 750;
+  line-height: 1.28;
+  letter-spacing: -0.045em;
+}
+
+.career-headline b {
+  color: #e5262d;
+  font-weight: 800;
+}
+
+.career-timeline-card {
+  overflow: hidden;
+  padding: 36px 28px 30px;
+  border: 1px solid rgb(210 204 197 / 72%);
+  border-radius: 13px;
+  background: rgb(255 255 255 / 78%);
+  box-shadow: 0 5px 16px rgb(48 34 27 / 3%);
+}
+
+.career-timeline-scroll {
+  position: relative;
+  min-width: 760px;
+  overflow: hidden;
+}
+
+.career-timeline-line {
+  position: absolute;
+  top: 7px;
+  right: 12px;
+  left: 6.5%;
+  height: 1px;
+  background: rgb(119 106 96 / 28%);
+}
+
+.career-timeline-line::after {
+  position: absolute;
+  top: 50%;
+  right: -1px;
+  width: 7px;
+  height: 7px;
+  border-top: 1px solid #a69d96;
+  border-right: 1px solid #a69d96;
+  content: '';
+  rotate: 45deg;
+  translate: 0 -50%;
+}
+
+.career-timeline-list {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.career-timeline-list li {
+  display: grid;
+  justify-items: center;
+  padding: 0 8px;
+  text-align: center;
+}
+
+.career-timeline-dot {
+  z-index: 1;
+  width: 15px;
+  height: 15px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  background: #e5262d;
+  box-shadow: 0 0 0 1px rgb(229 38 45 / 28%);
+}
+
+.career-timeline-list time {
+  margin-top: 15px;
+  color: #e5262d;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.career-timeline-list p {
+  margin: 8px 0 0;
+  color: #5f5853;
+  font-size: 0.7rem;
+  font-weight: 600;
+  line-height: 1.55;
+  white-space: pre-line;
+}
+
+.career-progress-headline {
+  display: block;
+  margin-top: 24px;
+  margin-bottom: 4px;
+  font-size: clamp(1.24rem, 2.4vw, 1.88rem);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.career-progress-headline span {
+  margin-right: 0.25em;
+}
+
+.resume-section--technology-experience {
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.expanded-resume-content .resume-section--technology-experience {
+  min-height: 0;
+}
+
+.technology-experience-intro {
+  margin: 2px 10px 22px;
+}
+
+.technology-experience-intro h3 {
+  margin: 0;
+  color: #292624;
+  font-size: clamp(1.45rem, 2.7vw, 2rem);
+  letter-spacing: -0.04em;
+}
+
+.technology-experience-intro p {
+  margin: 8px 0 0;
+  color: #817973;
+  font-size: 0.82rem;
+}
+
+.technology-card-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(145px, 1fr));
+  gap: 12px;
+  overflow-x: auto;
+  padding: 10px 2px 14px;
+}
+
+.technology-card {
+  display: flex;
+  min-height: 252px;
+  flex-direction: column;
+  padding: 20px 17px 16px;
+  overflow: hidden;
+  border: 1px solid rgb(210 204 197 / 72%);
+  border-radius: 14px;
+  background: rgb(255 255 255 / 82%);
+  box-shadow: 0 5px 16px rgb(48 34 27 / 3%);
+  cursor: pointer;
+  transition:
+    translate 180ms ease-out,
+    border-color 180ms ease-out,
+    background-color 180ms ease-out,
+    box-shadow 180ms ease-out;
+}
+
+.technology-card:hover {
+  translate: 0 -5px;
+  box-shadow: 0 12px 26px rgb(48 34 27 / 10%);
+}
+
+.technology-card:first-child:hover {
+  border-color: rgb(229 38 45 / 58%);
+  background: rgb(255 239 237 / 92%);
+}
+
+.technology-card small {
+  color: #9a918a;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.technology-card h4 {
+  margin: 13px 0 0;
+  color: #292624;
+  font-size: 1.08rem;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  transition: color 180ms ease-out;
+}
+
+.technology-card:first-child:hover h4 {
+  color: #e5262d;
+}
+
+.technology-card > p {
+  min-height: 36px;
+  margin: 7px 0 0;
+  color: #827a74;
+  font-size: 0.65rem;
+  line-height: 1.45;
+}
+
+.technology-illustration {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 82px;
+  margin-top: auto;
+  color: #e84a43;
+}
+
+.technology-illustration i {
+  position: absolute;
+  display: block;
+  border: 1.5px solid currentColor;
+}
+
+.technology-card--hbm .technology-illustration i,
+.technology-card--nand .technology-illustration i {
+  right: 20%;
+  left: 20%;
+  height: 13px;
+  border-radius: 3px;
+}
+
+.technology-card--hbm .technology-illustration i:nth-child(1),
+.technology-card--nand .technology-illustration i:nth-child(1) { bottom: 11px; }
+.technology-card--hbm .technology-illustration i:nth-child(2),
+.technology-card--nand .technology-illustration i:nth-child(2) { bottom: 28px; }
+.technology-card--hbm .technology-illustration i:nth-child(3),
+.technology-card--nand .technology-illustration i:nth-child(3) { bottom: 45px; }
+.technology-card--hbm .technology-illustration i:nth-child(4),
+.technology-card--nand .technology-illustration i:nth-child(4) { bottom: 62px; }
+
+.technology-card--nand .technology-illustration i:nth-child(even) {
+  right: 15%;
+  left: 25%;
+}
+
+.technology-card--dram .technology-illustration i:first-child {
+  inset: 15px 19% 11px;
+  border-radius: 6px;
+}
+
+.technology-card--dram .technology-illustration i:not(:first-child) {
+  top: 28px;
+  width: 10px;
+  height: 28px;
+  border-width: 1.5px 0;
+}
+
+.technology-card--dram .technology-illustration i:nth-child(2) { left: 9%; }
+.technology-card--dram .technology-illustration i:nth-child(3) { right: 9%; }
+.technology-card--dram .technology-illustration i:nth-child(4) {
+  inset: 30px 34% 26px;
+  border-radius: 2px;
+}
+
+.technology-card--cxl .technology-illustration i {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+}
+
+.technology-card--cxl .technology-illustration i:nth-child(1) { top: 11px; left: 10%; }
+.technology-card--cxl .technology-illustration i:nth-child(2) { top: 11px; right: 10%; }
+.technology-card--cxl .technology-illustration i:nth-child(3) { bottom: 8px; left: 40%; }
+.technology-card--cxl .technology-illustration i:nth-child(4) {
+  top: 31px;
+  right: 23%;
+  left: 23%;
+  height: 35px;
+  border-width: 1.5px 1.5px 0;
+  border-radius: 50% 50% 0 0;
+}
+
+.technology-card--packaging .technology-illustration i:nth-child(1) {
+  right: 10%;
+  bottom: 8px;
+  left: 10%;
+  height: 15px;
+  border-radius: 3px;
+}
+
+.technology-card--packaging .technology-illustration i:nth-child(2) {
+  right: 19%;
+  bottom: 27px;
+  left: 19%;
+  height: 35px;
+  border-radius: 4px;
+}
+
+.technology-card--packaging .technology-illustration i:nth-child(3),
+.technology-card--packaging .technology-illustration i:nth-child(4) {
+  bottom: 38px;
+  width: 17px;
+  height: 13px;
+  border-radius: 2px;
+}
+
+.technology-card--packaging .technology-illustration i:nth-child(3) { left: 28%; }
+.technology-card--packaging .technology-illustration i:nth-child(4) { right: 28%; }
+
+.technology-card-instruction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  margin: 14px 0 0;
+  color: #928a84;
+  font-size: 0.72rem;
+  text-align: center;
+}
+
+.technology-card-instruction span {
+  color: #e5262d;
+}
+
 .resume-sidebar {
   position: sticky;
   top: 32px;
-  flex: 0 0 clamp(240px, 20%, 260px);
+  flex: 0 0 clamp(200px, 17%, 220px);
   padding: 24px;
   border: 1px solid rgb(222 216 207 / 72%);
   border-radius: 18px;
@@ -1427,6 +2070,9 @@
   .resume-section { min-height: 180px; padding: 24px; }
   .resume-section--company-profile { min-height: 0; padding: 0; }
   .resume-section--application-information { min-height: 0; padding: 0; }
+  .resume-section--education { min-height: 0; padding: 0; }
+  .resume-section--career { min-height: 0; padding: 0; }
+  .resume-section--technology-experience { min-height: 0; padding: 0; }
   .company-profile-layout { grid-template-columns: 1fr; }
   .company-intro-card,
   .company-information-card { min-height: 220px; }
@@ -1446,4 +2092,7 @@
     border-top: 1px solid rgb(210 204 197 / 38%);
     border-left: 0;
   }
+  .education-card-layout { grid-template-columns: 1fr; }
+  .education-growth-card { grid-column: auto; }
+  .career-timeline-card { overflow-x: auto; }
 }
