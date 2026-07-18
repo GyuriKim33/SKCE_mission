@@ -70,6 +70,22 @@ export interface ResumeSectionData {
       illustration: 'hbm' | 'dram' | 'nand' | 'cxl' | 'packaging'
     }[]
   }
+  selfIntroduction?: {
+    titleFirst: string
+    titleSecond: string
+    questions: readonly {
+      number: string
+      question: string
+      description?: string
+      answer?: string
+      evaluationKeyword?: string
+      hashtagStatement?: readonly {
+        tag: string
+        suffix: string
+      }[]
+    }[]
+    instruction: string
+  }
 }
 
 export const resumeSections = [
@@ -242,6 +258,46 @@ export const resumeSections = [
     id: 'self-introduction',
     title: '06 자기소개서',
     body: '',
+    selfIntroduction: {
+      titleFirst: 'SK하이닉스가 함께하고 싶은',
+      titleSecond: '사람을 소개합니다.',
+      questions: [
+        {
+          number: 'Question 01',
+          question: '우리는 어떤 사람과\n함께 성장하고 싶나요?',
+          answer: '끊임없이 배우며 기술의 한계를 넘어서는 사람.',
+          evaluationKeyword: '역량 강화와 자기개발',
+        },
+        {
+          number: 'Question 02',
+          question: '우리는 어떤 사람과\n함께 도전하고 싶나요?',
+          answer: '기존의 틀을 깨고 스스로 행동하는 사람.',
+          evaluationKeyword: '과감한 실행력',
+        },
+        {
+          number: 'Question 03',
+          question: '우리는 어떤 사람과\n최고의 결과를 만들고 싶나요?',
+          answer: '함께 배우고, 함께 소통하며, 함께 성장하는 사람.',
+          evaluationKeyword: '팀웍의 시너지',
+        },
+        {
+          number: 'Question 04',
+          question: '우리는 어떤 회사인가요?',
+          description:
+            '우리를 가장 잘 나타낼 수 있는 해시태그(#)를 포함하여,\n우리가 추구하는 가치와 철학을 자유롭게 표현해주세요.',
+          hashtagStatement: [
+            { tag: '#도전', suffix: '을 통해' },
+            { tag: '#성장', suffix: '하고,' },
+            {
+              tag: '#함께',
+              suffix: '더 나은 기술의 미래를 만들어갑니다.',
+            },
+          ],
+        },
+      ],
+      instruction:
+        '스스로 더 행복해질 수 있도록, 자발적이고 의욕적으로 도전하는 패기 있는 인재를 기다립니다.',
+    },
   },
 ] as const satisfies readonly ResumeSectionData[]
 

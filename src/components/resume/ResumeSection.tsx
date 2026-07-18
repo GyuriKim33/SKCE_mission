@@ -65,7 +65,7 @@ const educationMuscleIcons = {
 const sectionReveal = {
   initial: { opacity: 0, y: 40 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.25 },
+  viewport: { once: false, amount: 0.25 },
   transition: { duration: 0.7, ease: 'easeOut' as const },
 }
 
@@ -355,6 +355,73 @@ export function ResumeSection({ section }: ResumeSectionProps) {
         <p className="technology-card-instruction">
           <span aria-hidden="true">ⓘ</span>
           {experience.instruction}
+        </p>
+      </motion.section>
+    )
+  }
+
+  if (section.selfIntroduction) {
+    const [number, ...titleParts] = section.title.split(' ')
+    const introduction = section.selfIntroduction
+
+    return (
+      <motion.section
+        {...sectionReveal}
+        className="resume-section resume-section--self-introduction"
+        id={section.id}
+      >
+        <header className="resume-section-heading">
+          <span className="resume-section-number">{number}</span>
+          <h2>{titleParts.join(' ')}</h2>
+        </header>
+
+        <div className="self-introduction-heading">
+          <h3>
+            <span>{introduction.titleFirst}</span>
+            <span>{introduction.titleSecond}</span>
+          </h3>
+          <span aria-hidden="true" />
+        </div>
+
+        <div className="self-introduction-questions">
+          {introduction.questions.map((question) => (
+            <article className="self-introduction-card" key={question.number}>
+              <div className="self-introduction-question">
+                <small>{question.number}</small>
+                <h4>{question.question}</h4>
+                {question.description && <p>{question.description}</p>}
+              </div>
+
+              <div className="self-introduction-answer">
+                <span className="self-introduction-quote" aria-hidden="true">
+                  “
+                </span>
+                {question.answer && (
+                  <p className="self-introduction-answer-copy">{question.answer}</p>
+                )}
+                {question.evaluationKeyword && (
+                  <div className="self-introduction-evaluation">
+                    <small>Evaluation Keyword</small>
+                    <strong>{question.evaluationKeyword}</strong>
+                  </div>
+                )}
+                {question.hashtagStatement && (
+                  <div className="self-introduction-hashtags">
+                    {question.hashtagStatement.map((part) => (
+                      <span key={part.tag}>
+                        <b>{part.tag}</b>
+                        {part.suffix}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <p className="self-introduction-instruction">
+          {introduction.instruction}
         </p>
       </motion.section>
     )
