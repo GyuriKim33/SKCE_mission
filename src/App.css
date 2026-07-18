@@ -531,6 +531,174 @@
   font-weight: 650;
 }
 
+.resume-returning-envelope-region {
+  position: relative;
+  display: block;
+  height: 120vh;
+  background: var(--color-ivory);
+}
+
+.resume-returning-envelope-stage {
+  position: sticky;
+  top: 0;
+  display: flex;
+  width: 100%;
+  height: 82vh;
+  align-items: flex-end;
+  justify-content: center;
+  overflow: visible;
+  background: var(--color-ivory);
+}
+
+.resume-returning-envelope {
+  position: relative;
+  display: block;
+  width: min(684px, 63vw);
+  margin-bottom: 4vh;
+  pointer-events: none;
+  perspective: 1500px;
+  perspective-origin: 50% 0%;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+}
+
+.resume-returning-envelope > .envelope {
+  width: 100%;
+}
+
+.resume-returning-envelope .resume-returning-envelope-open-flap {
+  top: -48%;
+  height: 50%;
+  clip-path: polygon(50% 0, 100% 100%, 0 100%);
+  transform-origin: bottom center;
+  transform: none;
+}
+
+.resume-returning-envelope .resume-returning-envelope-open-flap .envelope-flap-back {
+  transform: none;
+}
+
+.resume-returning-paper-hint {
+  cursor: default;
+  pointer-events: none;
+}
+
+.review-stamp-tool {
+  position: absolute;
+  z-index: 50;
+  top: -6%;
+  left: 66%;
+  display: block;
+  width: 230px;
+  height: 230px;
+  filter: drop-shadow(0 18px 15px rgb(15 13 12 / 30%));
+  isolation: isolate;
+}
+
+.review-stamp-tool img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+
+.review-stamp-tool img.review-stamp-tool-top {
+  top: 50%;
+  left: -5%;
+  width: 82%;
+  height: 82%;
+}
+
+.review-complete-imprint {
+  position: absolute;
+  z-index: 8;
+  top: 30%;
+  right: 2%;
+  display: grid;
+  width: 30%;
+  aspect-ratio: 1;
+  place-content: center;
+  gap: 2px;
+  border: 8px double #a93431;
+  border-radius: 50%;
+  color: #9f302e;
+  background:
+    radial-gradient(circle at 24% 31%, rgb(134 44 42 / 18%) 0 1px, transparent 2px),
+    radial-gradient(circle at 71% 22%, rgb(134 44 42 / 14%) 0 1.5px, transparent 2.5px),
+    radial-gradient(circle at 62% 78%, rgb(134 44 42 / 16%) 0 1px, transparent 2px),
+    radial-gradient(circle, rgb(235 111 101 / 22%) 0 69%, transparent 71%);
+  background-size: 17px 19px, 23px 21px, 19px 25px, auto;
+  box-shadow:
+    inset 0 0 0 2px rgb(159 48 46 / 18%),
+    0 0 1px rgb(112 31 29 / 35%);
+  filter: contrast(1.08) saturate(0.82);
+  font-size: clamp(1.24rem, 2.7vw, 2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  text-align: center;
+  mix-blend-mode: multiply;
+  text-shadow: 0.35px 0 rgb(117 34 32 / 45%);
+  transform: rotate(-4deg);
+}
+
+.review-complete-imprint::after {
+  position: absolute;
+  z-index: 2;
+  inset: 7%;
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(
+      8deg,
+      transparent 0 7px,
+      rgb(255 255 255 / 16%) 8px,
+      transparent 9px 14px
+    ),
+    radial-gradient(circle at 34% 64%, rgb(255 255 255 / 26%) 0 1px, transparent 2px),
+    radial-gradient(circle at 73% 37%, rgb(255 255 255 / 22%) 0 1.5px, transparent 2.5px);
+  background-size: auto, 13px 17px, 19px 15px;
+  content: '';
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.review-complete-imprint strong,
+.review-imprint-stars {
+  display: block;
+}
+
+.review-imprint-stars {
+  margin-bottom: 3px;
+  font-size: 0.58em;
+  letter-spacing: 0.12em;
+}
+
+.review-imprint-waves,
+.review-imprint-waves::before,
+.review-imprint-waves::after {
+  position: absolute;
+  top: 48%;
+  left: 88%;
+  width: 58%;
+  height: 4px;
+  border-radius: 50%;
+  background: currentColor;
+  content: '';
+}
+
+.review-imprint-waves::before {
+  top: -10px;
+  left: 5px;
+}
+
+.review-imprint-waves::after {
+  top: 10px;
+  left: -3px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .resume-scroll-wheel {
     animation: none;
