@@ -374,6 +374,9 @@
   position: fixed;
   z-index: 1000;
   margin: 0;
+  padding: 0;
+  border: 0;
+  background: var(--color-ivory);
   cursor: default;
   overflow-y: auto;
   pointer-events: auto;
@@ -390,10 +393,21 @@
 }
 
 .envelope-paper-hint--expanding > .expanded-resume-content {
+  --expanded-resume-padding: clamp(28px, 4vw, 56px);
+
   display: block;
   min-width: 0;
-  padding: clamp(28px, 4vw, 56px);
+  padding:
+    calc(var(--expanded-resume-padding) + 15px)
+    calc(var(--expanded-resume-padding) + 22px);
+  border: 1px solid rgb(105 86 73 / 12%);
+  border-radius: 22px;
   color: #292624;
+  background: linear-gradient(165deg, #fff, #faf8f4);
+  box-shadow:
+    0 0 0 2px rgb(48 34 27 / 18%),
+    0 30px 72px rgb(48 34 27 / 34%),
+    0 92px 240px rgb(48 34 27 / 48%);
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: normal;
@@ -448,6 +462,79 @@
 .expanded-resume-content .resume-sidebar {
   top: 24px;
   flex: 0 0 clamp(200px, 17%, 220px);
+}
+
+.expanded-resume-exterior-space {
+  display: flex;
+  height: 25vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  background: var(--color-ivory);
+}
+
+.resume-scroll-mouse {
+  position: relative;
+  display: block;
+  width: 28px;
+  height: 42px;
+  border: 1.5px solid #aaa29c;
+  border-radius: 16px;
+}
+
+.resume-scroll-wheel {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 4px;
+  height: 7px;
+  border-radius: 999px;
+  background: #e5262d;
+  translate: -50% 0;
+  animation: resume-scroll-wheel 1.6s ease-in-out infinite;
+}
+
+@keyframes resume-scroll-wheel {
+  0%,
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  50% {
+    opacity: 0.4;
+    transform: translateY(4px);
+  }
+}
+
+.resume-scroll-guidance {
+  display: block;
+  margin: 0;
+  color: #373330;
+  text-align: center;
+}
+
+.expanded-resume-exterior-space .resume-scroll-guidance {
+  margin-top: 0;
+}
+
+.resume-scroll-guidance p {
+  display: grid;
+  gap: 4px;
+  font-family: inherit;
+  letter-spacing: normal;
+}
+
+.resume-scroll-guidance strong {
+  color: #e5262d;
+  font-weight: 650;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resume-scroll-wheel {
+    animation: none;
+  }
 }
 
 .envelope-trigger--resume-opening {

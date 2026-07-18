@@ -57,8 +57,7 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
         height: targetHeight,
         borderRadius: 22,
         clipPath: 'inset(0 0 0% 0 round 22px)',
-        boxShadow:
-          '0 0 0 2px rgb(48 34 27 / 18%), 0 8px 24px rgb(48 34 27 / 30%), 0 30px 90px rgb(48 34 27 / 32%)',
+        boxShadow: '0 0 0 0 rgb(48 34 27 / 0%)',
         transition: { duration: 0.85, ease: 'easeInOut' },
       })
     })
@@ -146,6 +145,21 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
           />
         </span>
       </span>
+      {isResumeOpening && (
+        <span className="expanded-resume-exterior-space">
+          <span className="resume-scroll-mouse" aria-hidden="true">
+            <span className="resume-scroll-wheel" />
+          </span>
+          <span className="resume-scroll-guidance landing-instruction">
+            <p>
+              <span>기업의 지원서를 모두 검토하셨다면,</span>
+              <span>
+                아래로 스크롤하여 <strong>봉투에 다시 넣어주세요.</strong>
+              </span>
+            </p>
+          </span>
+        </span>
+      )}
     </motion.span>
   )
 
