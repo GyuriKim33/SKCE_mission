@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Pointer } from 'lucide-react'
+import { ChevronUp, Pointer } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
 import { Envelope } from '../components/landing/Envelope'
 import { NotificationCard } from '../components/landing/NotificationCard'
@@ -74,6 +74,11 @@ export function LandingPage({ onStart }: LandingPageProps) {
                   <strong>{landing.introCopyEmphasis}</strong>
                 </span>
               </motion.h1>
+              <span className="landing-hero-ornament" aria-hidden="true">
+                <i />
+                <b />
+                <i />
+              </span>
               <NotificationCard
                 eyebrow={landing.notificationEyebrow}
                 title={landing.notificationTitle}
@@ -83,6 +88,14 @@ export function LandingPage({ onStart }: LandingPageProps) {
                 laterLabel={landing.laterButton}
                 onConfirm={() => setLandingStage('envelope')}
                 arrivalDelay={0.5}
+              />
+              <p className="landing-support-copy">
+                지원서를 열어 기업을 평가해보세요.
+              </p>
+              <ChevronUp
+                className="landing-scroll-chevron"
+                aria-hidden="true"
+                strokeWidth={1.5}
               />
             </motion.div>
           )}

@@ -6,13 +6,14 @@ import {
   type MouseEvent,
 } from 'react'
 import { createPortal } from 'react-dom'
+import { Building2, Check, Heart } from 'lucide-react'
 import {
   motion,
   useAnimationControls,
   useMotionValue,
   useTransform,
 } from 'motion/react'
-import envelopeReference from '../../assets/references/landing-reference.png'
+import envelopeReference from '../../assets/references/landing-envelope.webp'
 import reviewStamp from '../../assets/landing/review-stamp.png'
 import reviewStampTop from '../../assets/landing/review-stamp-top.png'
 import logo from '../../assets/logos/sk-careers-editor-logo.png'
@@ -32,6 +33,8 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
   const [isStamping, setIsStamping] = useState(false)
   const [isStampImprintVisible, setIsStampImprintVisible] = useState(false)
   const [isStampToolGone, setIsStampToolGone] = useState(false)
+  const [isReviewCompleteVisible, setIsReviewCompleteVisible] = useState(false)
+  const [isFinalDialogVisible, setIsFinalDialogVisible] = useState(false)
   const [activeSectionId, setActiveSectionId] = useState<string>(
     resumeSections[0].id,
   )
@@ -42,6 +45,8 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
   const stampStartTimerRef = useRef<number | null>(null)
   const stampContactTimerRef = useRef<number | null>(null)
   const stampFinishTimerRef = useRef<number | null>(null)
+  const reviewCompleteTimerRef = useRef<number | null>(null)
+  const finalDialogTimerRef = useRef<number | null>(null)
   const paperStartRectRef = useRef<DOMRect | null>(null)
   const paperControls = useAnimationControls()
   const returningEnvelopeProgress = useMotionValue(0)
@@ -75,6 +80,12 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
       if (stampFinishTimerRef.current !== null) {
         window.clearTimeout(stampFinishTimerRef.current)
       }
+      if (reviewCompleteTimerRef.current !== null) {
+        window.clearTimeout(reviewCompleteTimerRef.current)
+      }
+      if (finalDialogTimerRef.current !== null) {
+        window.clearTimeout(finalDialogTimerRef.current)
+      }
     },
     [],
   )
@@ -95,6 +106,31 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
       stampFinishTimerRef.current = null
     }, 2300)
   }, [isEndingClosed])
+
+  useEffect(() => {
+    if (!isStampToolGone) return
+
+    reviewCompleteTimerRef.current = window.setTimeout(() => {
+      setIsReviewCompleteVisible(true)
+      reviewCompleteTimerRef.current = null
+    }, 300)
+
+    finalDialogTimerRef.current = window.setTimeout(() => {
+      setIsFinalDialogVisible(true)
+      finalDialogTimerRef.current = null
+    }, 3000)
+
+    return () => {
+      if (reviewCompleteTimerRef.current !== null) {
+        window.clearTimeout(reviewCompleteTimerRef.current)
+        reviewCompleteTimerRef.current = null
+      }
+      if (finalDialogTimerRef.current !== null) {
+        window.clearTimeout(finalDialogTimerRef.current)
+        finalDialogTimerRef.current = null
+      }
+    }
+  }, [isStampToolGone])
 
   const openEnvelope = () => {
     if (!isOpen) setIsOpen(true)
@@ -129,9 +165,9 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
         left: targetLeft,
         width: targetWidth,
         height: targetHeight,
-        borderRadius: 22,
-        clipPath: 'inset(0 0 0% 0 round 22px)',
-        boxShadow: '0 0 0 0 rgb(48 34 27 / 0%)',
+        borderRadius: 20,
+        clipPath: 'inset(0 0 0% 0 round 20px)',
+        boxShadow: '0 0 0 0 rgb(40 30 20 / 0%)',
         transition: { duration: 0.85, ease: 'easeInOut' },
       })
     })
@@ -226,6 +262,8 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
         className="expanded-resume-content"
         aria-hidden={!isResumeOpening}
       >
+        <span className="expanded-resume-paper-layer expanded-resume-paper-layer--first" />
+        <span className="expanded-resume-paper-layer expanded-resume-paper-layer--second" />
         <span className="expanded-resume-header">
           <img src={logo} alt={appContent.brandName} />
           <strong>지원서</strong>
@@ -266,24 +304,36 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
           >
             <span className="resume-returning-envelope-stage">
               <motion.span
-                className="resume-returning-envelope"
+                className={`resume-returning-envelope${isReviewCompleteVisible ? ' resume-returning-envelope--review-complete' : ''}`}
                 style={{
                   y: returningEnvelopeY,
                   opacity: returningEnvelopeOpacity,
                 }}
                 animate={{
-                  scale: isStampImprintVisible
-                    ? [0.9, 0.8865, 0.9]
-                    : isEndingClosed
-                      ? 0.9
-                      : 1,
+                  scale: isReviewCompleteVisible
+                    ? 0.68
+                    : isStampImprintVisible
+                      ? [0.9, 0.8865, 0.9]
+                      : isEndingClosed
+                        ? 0.9
+                        : 1,
                 }}
                 transition={{
                   scale: {
-                    duration: isStampImprintVisible ? 0.22 : 0.5,
+                    duration: isReviewCompleteVisible
+                      ? 0.75
+                      : isStampImprintVisible
+                        ? 0.22
+                        : 0.5,
                     delay:
-                      isEndingClosed && !isStampImprintVisible ? 0.45 : 0,
-                    ease: 'easeInOut',
+                      isEndingClosed &&
+                      !isStampImprintVisible &&
+                      !isReviewCompleteVisible
+                        ? 0.45
+                        : 0,
+                    ease: isReviewCompleteVisible
+                      ? [0.22, 1, 0.36, 1]
+                      : 'easeInOut',
                   },
                 }}
                 aria-hidden="true"
@@ -412,6 +462,55 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
                 </motion.span>
               </motion.span>
             </span>
+              {isReviewCompleteVisible && (
+                <motion.span
+                  className="ending-review-complete"
+                  initial={{ opacity: 0, y: 12, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  transition={{ duration: 0.4, ease: 'easeOut' }}
+                >
+                  <span className="ending-review-decoration" aria-hidden="true">
+                    <span className="ending-review-laurel ending-review-laurel--left">❧</span>
+                    <span className="ending-review-seal">
+                      <Check size={22} strokeWidth={2.6} />
+                    </span>
+                    <span className="ending-review-laurel ending-review-laurel--right">❧</span>
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span className="ending-review-title">
+                    <strong>기업 이력서 검토가</strong>
+                    <strong>
+                      <em>모두 완료</em>되었습니다!
+                    </strong>
+                  </span>
+                  <span
+                    className="ending-review-confetti ending-review-confetti--left"
+                    aria-hidden="true"
+                  >
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span
+                    className="ending-review-confetti ending-review-confetti--right"
+                    aria-hidden="true"
+                  >
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span className="ending-review-thanks">
+                    SK하이닉스의 지원서를 꼼꼼히 검토해주셔서 감사합니다.
+                  </span>
+                </motion.span>
+              )}
           </span>
         </>
       )}
@@ -419,7 +518,8 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
   )
 
   return (
-    <motion.button
+    <>
+      <motion.button
       className={`envelope-trigger${isResumeOpening ? ' envelope-trigger--resume-opening' : ''}`}
       type="button"
       aria-label={label}
@@ -472,6 +572,57 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
           {isResumeOpening && createPortal(paperElement, document.body)}
         </>
       )}
-    </motion.button>
+      </motion.button>
+      {isFinalDialogVisible &&
+        createPortal(
+          <span className="final-decision-layer">
+            <motion.span
+              className="final-decision-overlay"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+            />
+            <motion.section
+              className="final-decision-dialog"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="final-decision-title"
+              initial={{ opacity: 0, scale: 0.92, y: 12 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <span className="final-decision-window-dots" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+              </span>
+              <span className="final-decision-bell" aria-hidden="true">
+                <Building2 size={42} strokeWidth={2.15} />
+              </span>
+              <h2 id="final-decision-title">
+                <span>이 기업을</span>
+                <span>
+                  당신의 <strong>관심기업</strong>으로
+                </span>
+                <span>합격시키겠습니까?</span>
+              </h2>
+              <span className="final-decision-actions">
+                <button type="button" className="final-decision-button final-decision-button--secondary">
+                  아니요, 다시 검토할래요
+                </button>
+                <button
+                  type="button"
+                  className="final-decision-button final-decision-button--primary"
+                  onClick={() => setIsFinalDialogVisible(false)}
+                >
+                  <Heart size={20} strokeWidth={2.2} aria-hidden="true" />
+                  네, 합격시킬게요!
+                </button>
+              </span>
+            </motion.section>
+          </span>,
+          document.body,
+        )}
+    </>
   )
 }
