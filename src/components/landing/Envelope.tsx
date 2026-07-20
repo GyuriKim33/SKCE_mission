@@ -168,7 +168,7 @@ export function Envelope({ label, onClick: _onClick }: EnvelopeProps) {
         borderRadius: 20,
         clipPath: 'inset(0 0 0% 0 round 20px)',
         boxShadow: '0 0 0 0 rgb(40 30 20 / 0%)',
-        transition: { duration: 0.85, ease: 'easeInOut' },
+        transition: { duration: 0.75, ease: 'easeInOut' },
       })
     })
   }

@@ -204,9 +204,11 @@ export function ResumeSection({ section }: ResumeSectionProps) {
             <div className="education-former-requirement">
               <small>기존 채용공고의</small>
               <p>
-                <b>{degree.formerRequirement}</b>
                 <span>
+                  <b>{degree.formerRequirement}</b>
                   {degree.formerRequirementSuffix.replace('삭제했습니다.', '')}
+                </span>
+                <span>
                   <span className="education-deletion-emphasis">삭제</span>했습니다.
                 </span>
               </p>

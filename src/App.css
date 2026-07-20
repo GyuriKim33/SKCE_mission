@@ -2270,6 +2270,10 @@ html.os-windows .ending-review-complete {
   white-space: normal;
 }
 
+html.os-windows .education-muscle-item:nth-child(2) p {
+  white-space: nowrap;
+}
+
 .education-muscle-center {
   position: absolute;
   z-index: 3;
