@@ -12,6 +12,10 @@
   --color-ivory: #fcf7ef;
 }
 
+html.os-windows {
+  font-family: Pretendard, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
 * {
   box-sizing: border-box;
 }

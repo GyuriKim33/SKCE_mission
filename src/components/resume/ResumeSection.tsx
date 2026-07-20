@@ -205,7 +205,10 @@ export function ResumeSection({ section }: ResumeSectionProps) {
               <small>기존 채용공고의</small>
               <p>
                 <b>{degree.formerRequirement}</b>
-                {degree.formerRequirementSuffix}
+                <span>
+                  {degree.formerRequirementSuffix.replace('삭제했습니다.', '')}
+                  <span className="education-deletion-emphasis">삭제</span>했습니다.
+                </span>
               </p>
             </div>
           </article>
@@ -242,8 +245,9 @@ export function ResumeSection({ section }: ResumeSectionProps) {
               <Heart />
             </span>
             <div>
-              <small>{growth.label}</small>
-              <p>{growth.firstLine}</p>
+              <p className="education-growth-lead">
+                {growth.label} {growth.firstLine}
+              </p>
               <strong>{growth.emphasis}</strong>
             </div>
           </article>
