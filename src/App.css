@@ -630,6 +630,10 @@
   margin-bottom: -4vh;
 }
 
+html.os-windows .resume-returning-envelope--review-complete {
+  margin-bottom: -9vh;
+}
+
 .resume-returning-envelope > .envelope {
   width: 100%;
 }
@@ -660,6 +664,10 @@
   color: #24201e;
   text-align: center;
   pointer-events: none;
+}
+
+html.os-windows .ending-review-complete {
+  top: calc(40vh - 20px);
 }
 
 .ending-review-decoration {
